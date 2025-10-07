@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dior Tote Bags | Dior Indonesia</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: #000;
+      color: #fff;
+      padding: 1rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a.active {
+      border-bottom: 2px solid #fff;
+    }
+
+    .hero {
+      background: #eee;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-list {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-item {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-item img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+
+    .product-item h3 {
+      font-size: 1rem;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .product-item p {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .about-collection {
+      background: #fff;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      border-left: 4px solid #000;
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Bags</a></li>
+        <li><a href="#" class="active">Tote Bags</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Tote Bags</h1>
+    <p>Discover the elegance of Dior tote bags – timeless and practical pieces for every occasion.</p>
+  </section>
+
+  <!-- Product List -->
+  <section class="product-list">
+    <h2 style="text-align: center; margin-bottom: 2rem;">Our Collection</h2>
+    <div class="products">
+      <!-- Example Product -->
+      <div class="product-item">
+        <a href="#">
+          <img src="https://www.dior.com/couture/var/dior/storage/images/29836183/1-eng-GB/dior-book-tote-front-view.jpg" alt="Large Dior Book Tote" />
+          <h3>Large Dior Book Tote - Grey Denim</h3>
+          <p>Rp 58.000.000</p>
+        </a>
+      </div>
+
+      <div class="product-item">
+        <a href="#">
+          <img src="https://www.dior.com/couture/var/dior/storage/images/29821529/2-eng-GB/dior-toujours-bag.jpg" alt="Dior Toujours Bag" />
+          <h3>Dior Toujours Bag - Black Calfskin</h3>
+          <p>Rp 67.000.000</p>
+        </a>
+      </div>
+
+      <div class="product-item">
+        <a href="#">
+          <img src="https://www.dior.com/couture/var/dior/storage/images/29911777/1-eng-GB/toile-de-jouy-book-tote.jpg" alt="Toile de Jouy Book Tote" />
+          <h3>Toile de Jouy Book Tote</h3>
+          <p>Rp 60.000.000</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-collection">
+    <h2>About Dior Tote Bags</h2>
+    <p>
+      Dior tote bags are designed with elegance and functionality in mind. Whether embroidered with Dior Oblique, Cannage, or Toile de Jouy motifs, each piece is an expression of the House's iconic heritage. Perfect for everyday use or special moments.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">Contact</a> |
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Legal Terms</a>
+    </div>
+    <p style="margin-top: 1rem;">&copy; 2025 Dior. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

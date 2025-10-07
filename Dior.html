@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pick your region and language — demo</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --muted:#6b6b6b;
+      --heading:#111;
+      --card-border:#efefef;
+      --container-max:1024px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--heading);}
+
+    .page{
+      max-width:var(--container-max);
+      margin:0 auto;
+      padding:28px 20px 90px; /* space for mobile bottom bar imitation, if any */
+    }
+
+    header{
+      padding:18px 0 28px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .title{
+      font-size:28px;
+      font-weight:700;
+      line-height:1.05;
+      margin:0 0 8px;
+    }
+
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* Section */
+    .region{
+      margin-top:28px;
+    }
+
+    .region h2{
+      font-size:20px;
+      margin:18px 0;
+      font-weight:600;
+    }
+
+    /* grid of countries */
+    .country-grid{
+      display:grid;
+      gap:14px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    /* card */
+    .country{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px;
+      border-radius:10px;
+      cursor:pointer;
+      transition: background .12s ease, transform .08s ease;
+      border:1px solid var(--card-border);
+    }
+    .country:active{transform:scale(.998);}
+    .country:hover{background:#fafafa;}
+
+    .flag{
+      font-size:26px;
+      width:40px;
+      height:40px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      background:#fff;
+      border:1px solid var(--card-border);
+      flex:0 0 40px;
+    }
+
+    .country .meta{
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+    }
+    .country .name{
+      font-weight:600;
+      font-size:15px;
+      line-height:1.1;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .country .lang{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+
+    /* Make 3 columns on bigger screens */
+    @media (min-width:720px){
+      .country-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .title{ font-size:34px; }
+    }
+
+    /* Optional bottom faux address bar like in screenshot */
+    .bottom-url {
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:12px;
+      width:min(920px,calc(100% - 28px));
+      background:rgba(255,255,255,0.95);
+      border-radius:14px;
+      padding:8px 12px;
+      box-shadow:0 6px 22px rgba(0,0,0,0.08);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      border:1px solid #eee;
+    }
+    .bottom-url .favicon{
+      width:18px;height:18px;border-radius:4px;background:#ddd;flex:0 0 18px;
+    }
+    .bottom-url .url{flex:1; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1 class="title">Change your region and language</h1>
+      <p class="subtitle">Be sure to pick the location that matches your shipping address.</p>
+    </header>
+
+    <!-- Americas -->
+    <section class="region">
+      <h2>Americas</h2>
+      <div class="country-grid">
+        <div class="country" tabindex="0" role="button">
+          <div class="flag" aria-hidden>🇺🇸</div>
+          <div class="meta">
+            <div class="name">United States</div>
+            <div class="lang">English</div>
+          </div>
+        </div>
+
+        <div class="country" tabindex="0" role="button">
+          <div class="flag">🇨🇦</div>
+          <div class="meta">
+            <div class="name">Canada</div>
+            <div class="lang">English</div>
+          </div>
+        </div>
+
+       <div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">California</div>
+    <div class="lang">english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">California</div>
+    <div class="lang">english, spanish, chinese</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Texas</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Florida</div>
+    <div class="lang">english, spanish, haitian creole</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">New York</div>
+    <div class="lang">english, spanish, chinese</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Illinois</div>
+    <div class="lang">english, polish, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Pennsylvania</div>
+    <div class="lang">english, german, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Ohio</div>
+    <div class="lang">english, spanish, arabic</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Georgia</div>
+    <div class="lang">english, vietnamese, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">North Carolina</div>
+    <div class="lang">english, spanish, hmong</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Michigan</div>
+    <div class="lang">english, arabic, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Arizona</div>
+    <div class="lang">english, spanish, navajo</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Washington</div>
+    <div class="lang">english, spanish, chinese</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Virginia</div>
+    <div class="lang">english, spanish, korean</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Massachusetts</div>
+    <div class="lang">english, portuguese, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Tennessee</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Indiana</div>
+    <div class="lang">english, spanish, german</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Missouri</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Maryland</div>
+    <div class="lang">english, spanish, french</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Wisconsin</div>
+    <div class="lang">english, german, polish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Colorado</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Minnesota</div>
+    <div class="lang">english, somali, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">South Carolina</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Alabama</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Louisiana</div>
+    <div class="lang">english, french, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Kentucky</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Oregon</div>
+    <div class="lang">english, spanish, russian</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Oklahoma</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Connecticut</div>
+    <div class="lang">english, spanish, italian</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Iowa</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Mississippi</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Arkansas</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Nebraska</div>
+    <div class="lang">english, spanish, german</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">New Mexico</div>
+    <div class="lang">english, spanish, navajo</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">West Virginia</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Idaho</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Hawaii</div>
+    <div class="lang">english, hawaiian, tagalog</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">New Jersey</div>
+    <div class="lang">english, spanish, portuguese</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Montana</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Delaware</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Rhode Island</div>
+    <div class="lang">english, portuguese, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">South Dakota</div>
+    <div class="lang">english, german, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">North Dakota</div>
+    <div class="lang">english, german, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Alaska</div>
+    <div class="lang">english, native alaskan languages, russian</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Vermont</div>
+    <div class="lang">english, french</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Wyoming</div>
+    <div class="lang">english, spanish</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Massachusetts</div>
+    <div class="lang">english, portuguese, spanish</div>
+  </div>
+</div>
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Indiana</div>
+    <div class="lang">english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Missouri</div>
+    <div class="lang">english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Maryland</div>
+    <div class="lang">english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Wisconsin</div>
+    <div class="lang">english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇸</div>
+  <div class="meta">
+    <div class="name">Colorado</div>
+    <div class="lang">english</div>
+  </div>
+</div>
+    </section>
+
+    <!-- Asia Pacific -->
+    <section class="region">
+      <h2>Asia Pacific</h2>
+      <div class="country-grid">
+        <div class="country" tabindex="0">
+          <div class="flag">🇦🇺</div>
+          <div class="meta">
+            <div class="name">Australia</div>
+            <div class="lang">English</div>
+          </div>
+        </div>
+
+        <div class="country" tabindex="0">
+          <div class="flag">🇮🇳</div>
+          <div class="meta">
+            <div class="name">India</div>
+            <div class="lang">English</div>
+          </div>
+        </div>
+
+       <div class="country" tabindex="0" role="button">
+  <div class="flag">🇨🇳</div>
+  <div class="meta">
+    <div class="name">China</div>
+    <div class="lang">中文, english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇮🇳</div>
+  <div class="meta">
+    <div class="name">India</div>
+    <div class="lang">हिन्दी, english, தமிழ், বাংলা</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇯🇵</div>
+  <div class="meta">
+    <div class="name">Japan</div>
+    <div class="lang">日本語</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇰🇷</div>
+  <div class="meta">
+    <div class="name">South Korea</div>
+    <div class="lang">한국어, english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇮🇩</div>
+  <div class="meta">
+    <div class="name">Indonesia</div>
+    <div class="lang">Bahasa Indonesia, english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇵🇰</div>
+  <div class="meta">
+    <div class="name">Pakistan</div>
+    <div class="lang">اردو, english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇧🇩</div>
+  <div class="meta">
+    <div class="name">Bangladesh</div>
+    <div class="lang">বাংলা, english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇷🇺</div>
+  <div class="meta">
+    <div class="name">Russia</div>
+    <div class="lang">русский, english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇸🇦</div>
+  <div class="meta">
+    <div class="name">Saudi Arabia</div>
+    <div class="lang">العربية, english</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇮🇷</div>
+  <div class="meta">
+    <div class="name">Iran</div>
+    <div class="lang">فارسی</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇹🇷</div>
+  <div class="meta">
+    <div class="name">Turkey</div>
+    <div class="lang">Türkçe</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇵🇭</div>
+  <div class="meta">
+    <div class="name">Philippines</div>
+    <div class="lang">Filipino, english, cebuano</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇻🇳</div>
+  <div class="meta">
+    <div class="name">Vietnam</div>
+    <div class="lang">Tiếng Việt</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇹🇭</div>
+  <div class="meta">
+    <div class="name">Thailand</div>
+    <div class="lang">ไทย</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇲🇾</div>
+  <div class="meta">
+    <div class="name">Malaysia</div>
+    <div class="lang">Malay, english, chinese, tamil</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇸🇬</div>
+  <div class="meta">
+    <div class="name">Singapore</div>
+    <div class="lang">english, mandarin, malay, tamil</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇮🇶</div>
+  <div class="meta">
+    <div class="name">Iraq</div>
+    <div class="lang">العربية, کردی</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇦🇫</div>
+  <div class="meta">
+    <div class="name">Afghanistan</div>
+    <div class="lang">دری, پښتو</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇾🇪</div>
+  <div class="meta">
+    <div class="name">Yemen</div>
+    <div class="lang">العربية</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇱🇧</div>
+  <div class="meta">
+    <div class="name">Lebanon</div>
+    <div class="lang">العربية, français</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇯🇴</div>
+  <div class="meta">
+    <div class="name">Jordan</div>
+    <div class="lang">العربية</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇰🇼</div>
+  <div class="meta">
+    <div class="name">Kuwait</div>
+    <div class="lang">العربية</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇧🇭</div>
+  <div class="meta">
+    <div class="name">Bahrain</div>
+    <div class="lang">العربية</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇶🇦</div>
+  <div class="meta">
+    <div class="name">Qatar</div>
+    <div class="lang">العربية</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇺🇿</div>
+  <div class="meta">
+    <div class="name">Uzbekistan</div>
+    <div class="lang">Ўзбекча, русский</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇹🇯</div>
+  <div class="meta">
+    <div class="name">Tajikistan</div>
+    <div class="lang">тоҷикӣ, русӣ</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇰🇬</div>
+  <div class="meta">
+    <div class="name">Kyrgyzstan</div>
+    <div class="lang">кыргыз тили, русский</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇲🇳</div>
+  <div class="meta">
+    <div class="name">Mongolia</div>
+    <div class="lang">Монгол хэл</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇳🇵</div>
+  <div class="meta">
+    <div class="name">Nepal</div>
+    <div class="lang">नेपाली</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇱🇦</div>
+  <div class="meta">
+    <div class="name">Laos</div>
+    <div class="lang">ລາວ</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇰🇭</div>
+  <div class="meta">
+    <div class="name">Cambodia</div>
+    <div class="lang">ភាសាខ្មែរ</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇧🇹</div>
+  <div class="meta">
+    <div class="name">Bhutan</div>
+    <div class="lang">བོད་ཡིག</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇲🇾</div>
+  <div class="meta">
+    <div class="name">Malaysia</div>
+    <div class="lang">Malay, english, chinese, tamil</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇹🇼</div>
+  <div class="meta">
+    <div class="name">Taiwan</div>
+    <div class="lang">中文, Taiwanese Hokkien</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇦🇲</div>
+  <div class="meta">
+    <div class="name">Armenia</div>
+    <div class="lang">Հայերեն</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇦🇿</div>
+  <div class="meta">
+    <div class="name">Azerbaijan</div>
+    <div class="lang">Azərbaycan dili</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇬🇪</div>
+  <div class="meta">
+    <div class="name">Georgia</div>
+    <div class="lang">ქართული</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇮🇱</div>
+  <div class="meta">
+    <div class="name">Israel</div>
+    <div class="lang">עברית, العربية</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇧🇳</div>
+  <div class="meta">
+    <div class="name">Brunei</div>
+    <div class="lang">Malay, English</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇲🇲</div>
+  <div class="meta">
+    <div class="name">Myanmar</div>
+    <div class="lang">မြန်မာ</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇹🇲</div>
+  <div class="meta">
+    <div class="name">Turkmenistan</div>
+    <div class="lang">Türkmençe, русский</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇵🇸</div>
+  <div class="meta">
+    <div class="name">Palestine</div>
+    <div class="lang">العربية</div>
+  </div>
+</div>
+
+<div class="country" tabindex="0" role="button">
+  <div class="flag">🇲🇹</div>
+  <div class="meta">
+    <div class="name">Malta</div>
+    <div class="lang">Maltese, English</div>
+  </div>
+</div>
+
+    </section>
+
+  </div>
+
+  <!-- bottom fake url bar (optional) -->
+  <div class="bottom-url" aria-hidden>
+    <div class="favicon"></div>
+    <div class="url">store.google.com</div>
+    <div>⤴</div>
+  </div>
+
+  <script>
+    // Simple keyboard/enter handling for "cards"
+    document.querySelectorAll('.country').forEach(el=>{
+      el.addEventListener('click', ()=> {
+        // placeholder action: you can replace with actual navigation
+        const name = el.querySelector('.name').textContent;
+        alert('Selected: ' + name);
+      });
+      el.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
