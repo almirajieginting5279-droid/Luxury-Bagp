@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artikel Lainnya — Almira Luxury</title>
+<style>
+:root{
+  --bg:#0f1720;
+  --card:#111827;
+  --muted:#9ca3af;
+  --accent:#0ea5a4;
+  --glass: rgba(255,255,255,0.04);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, Arial;
+  background: linear-gradient(180deg,#09121a 0%, #07111a 100%);
+  color:#e6eef3; display:flex; flex-direction:column; min-height:100vh;
+}
+.topbar{display:flex;align-items:center;gap:18px;padding:18px 28px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo .mark{
+  width:36px;height:36px;background:linear-gradient(135deg,#dc2626,#ef4444);
+  border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;
+}
+.nav-links{color:var(--muted);font-size:14px;flex:1;}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--muted);}
+.search input{
+  background:rgba(255,255,255,0.06);border:none;border-radius:6px;padding:6px 8px;color:white;
+}
+.search input:focus{outline:1px solid var(--accent);}
+main{max-width:1180px;margin:0 auto;padding:18px;}
+h1.section-title{margin:18px 0;font-size:32px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:14px;}
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(2,6,23,0.6);
+  display:flex;flex-direction:column;transition:.2s;
+}
+.card:hover{transform:translateY(-5px);}
+.thumb{width:100%;aspect-ratio:16/10;object-fit:cover;}
+.card-body{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1;}
+.meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);}
+.title{font-weight:600;font-size:16px;line-height:1.3;}
+.btn{
+  background:transparent;color:var(--accent);border:1px solid rgba(14,165,164,0.2);
+  padding:6px 10px;border-radius:8px;cursor:pointer;text-decoration:none;font-weight:600;
+}
+.cookie{
+  position:fixed;left:18px;right:18px;bottom:18px;background:rgba(3,7,18,0.9);
+  border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:center;
+  border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px);color:var(--muted);z-index:9999;
+}
+.cookie p{margin:0;font-size:14px;}
+.cookie .actions{margin-left:auto;display:flex;gap:8px;}
+.cookie button{border:none;border-radius:6px;padding:8px 10px;font-weight:600;cursor:pointer;}
+.cookie .accept{background:var(--accent);color:#042022;}
+.cookie .dismiss{background:transparent;border:1px solid rgba(255,255,255,0.1);color:var(--muted);}
+footer{text-align:center;margin-top:40px;padding:18px;color:var(--muted);font-size:13px;}
+#searchResults{
+  background:rgba(17,24,39,0.95);position:absolute;top:60px;right:40px;width:240px;
+  border-radius:8px;padding:8px;display:none;flex-direction:column;z-index:99;
+}
+#searchResults a{
+  color:white;padding:6px 8px;border-radius:4px;text-decoration:none;
+}
+#searchResults a:hover{background:rgba(255,255,255,0.1);}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <div class="mark">A</div>
+    <div><strong>Almira Luxury Artikel</strong><div style="font-size:12px;color:var(--muted)">Personal · Business · Investor</div></div>
+  </div>
+  <div class="nav-links">Artikel utama yang kami buat bisa dibaca dengan seksama</div>
+  <div class="search">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:.7"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6"/></svg>
+    <input id="searchInput" placeholder="Cari artikel...">
+    <div id="searchResults"></div>
+  </div>
+</header>
+
+<main>
+<h1 class="section-title">Artikel Kami Yang Lainnya</h1>
+<div class="grid" id="articleGrid">
+  <article class="card" data-title="Story of AlJI Family Start From Here">
+    <img class="thumb" src="WhatsApp Image 2025-10-06 at 21.08.08_e4fcc158.JPG">
+    <div class="card-body">
+      <div class="meta"><span>Artikel</span><span>2 Okt 2025</span></div>
+      <div class="title">Story of AlJI Family Start From Here</div>
+      <div><a class="btn" href="#">Baca Selengkapnya</a></div>
+    </div>
+  </article>
+  <article class="card" data-title="Banyaknya rumor mengenai kencan awal Jisung">
+    <img class="thumb" src="WhatsApp Image 2025-10-06 at 21.08.01_498ccd88.jpg">
+    <div class="card-body">
+      <div class="meta"><span>Artikel</span><span>6 Okt 2025</span></div>
+      <div class="title">Banyaknya rumor mengenai kencan awal Jisung</div>
+      <div><a class="btn" href="#">Baca Selengkapnya</a></div>
+    </div>
+  </article>
+  <article class="card" data-title="6 Alasan Resign yang Masuk Akal untuk Berhenti Bekerja">
+    <img class="thumb" src="WhatsApp Image 2025-10-06 at 21.12.04_55f26c3a.jpg">
+    <div class="card-body">
+      <div class="meta"><span>Karir</span><span>8 Okt 2025</span></div>
+      <div class="title">6 Alasan Resign yang Masuk Akal untuk Berhenti Bekerja</div>
+      <div><a class="btn" href="#">Baca Selengkapnya</a></div>
+    </div>
+  </article>
+  <article class="card" data-title="Syarat dapat tipe seperti Jisung">
+    <img class="thumb" src="WhatsApp Image 2025-10-06 at 21.08.00_9d1e96b7.jpg">
+    <div class="card-body">
+      <div class="meta"><span>Artikel</span><span>22 Sep 2025</span></div>
+      <div class="title">Syarat dapat tipe seperti Jisung</div>
+      <div><a class="btn" href="#">Baca Selengkapnya</a></div>
+    </div>
+  </article>
+</div>
+<footer>© 2025 Almira Luxury Situs</footer>
+</main>
+
+<!-- Cookie Banner -->
+<div class="cookie" id="cookieBanner">
+  <div><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#9ca3af" stroke-width="1.2"/><path d="M9 12h6" stroke="#9ca3af" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+  <div><p><strong>Situs ini menggunakan cookies</strong> untuk meningkatkan pengalaman Anda. Dengan menggunakan situs ini, Anda telah menyetujui penggunaan cookies dari kami.</p></div>
+  <div class="actions">
+    <button class="dismiss" id="cookieDismiss">Kelola</button>
+    <button class="accept" id="cookieAccept">Terima</button>
+  </div>
+</div>
+
+<script>
+/* ==== Buat link dinamis ke artikel lain ==== */
+document.querySelectorAll('.card .btn').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.preventDefault();
+    const title = btn.closest('.card').dataset.title;
+    const fileName = title.toLowerCase().replace(/\s+/g,'-').replace(/[^\w-]+/g,'');
+    // simulasi buka halaman artikel (bisa diarahkan ke folder artikel sebenarnya)
+    alert('Membuka artikel: ' + title + ' (file: ' + fileName + '.html)');
+    //window.location.href = fileName + '.html'; // aktifkan jika sudah punya halaman artikel
+  });
+});
+
+/* ==== Fungsi Pencarian ==== */
+const searchInput=document.getElementById('searchInput');
+const searchResults=document.getElementById('searchResults');
+const articles=[...document.querySelectorAll('.card')].map(c=>c.dataset.title);
+
+searchInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    const q=searchInput.value.toLowerCase().trim();
+    if(!q){searchResults.style.display='none';return;}
+    const matches=articles.filter(t=>t.toLowerCase().includes(q));
+    searchResults.innerHTML='';
+    if(matches.length){
+      matches.forEach(m=>{
+        const a=document.createElement('a');
+        a.textContent=m;
+        a.href='#';
+        a.addEventListener('click',ev=>{
+          ev.preventDefault();
+          alert('Membuka artikel: '+m);
+          searchResults.style.display='none';
+        });
+        searchResults.appendChild(a);
+      });
+    } else {
+      searchResults.innerHTML='<span style="color:#9ca3af;font-size:13px;">Tidak ditemukan</span>';
+    }
+    searchResults.style.display='flex';
+  }
+});
+
+/* ==== Cookie Banner ==== */
+(function(){
+  const banner=document.getElementById('cookieBanner');
+  const accept=document.getElementById('cookieAccept');
+  const dismiss=document.getElementById('cookieDismiss');
+  const key='cookie_accepted_v1';
+
+  if(localStorage.getItem(key)==='yes'){banner.style.display='none';}
+
+  accept.addEventListener('click',()=>{
+    banner.innerHTML='<p style="width:100%;text-align:center;font-weight:600;color:#0ea5a4;">Terima kasih telah menerima cookies 🍪</p>';
+    localStorage.setItem(key,'yes');
+    setTimeout(()=>banner.style.display='none',5000);
+  });
+  dismiss.addEventListener('click',()=>{
+    alert('Pengaturan cookie (demo).');
+  });
+})();
+</script>
+</body>
+</html>

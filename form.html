@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Halaman Utama</title>
+    </head>
+    <body>
+      <h1>Silakan di Klik Untuk Kembali Ke Halaman Utama</h1>
+        <p>
+          Jangan lupa untuk berbelanja. Tinggal klik saja!
+        </p>
+        <p>
+          <a href="index.html">Kembali ke halaman Utama</a>
+        </p>
+ <p>
+          <a href="pick bahasa.html">Klik untuk menggunakan bahasa lain</a>
+        </p>
+    </body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Bag</title>
+    <style>
+        /* Basic styling for better readability (optional) */
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="number"], textarea, select {
+            width: calc(100% - 22px); /* Adjust for padding and border */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .form-group { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h1>Pick Your Order</h1>
+
+    <form action="/submit-order" method="post">
+        <fieldset>
+            <legend>Customer Information</legend>
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="customer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="customer_email" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Shipping Address:</label>
+                <textarea id="address" name="shipping_address" rows="4" required></textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Order Details</legend>
+            <div class="form-group">
+                <label for="product">Select Product:</label>
+                <select id="product" name="product_selection" required>
+                    <option value="">--Please choose an option--</option>
+                    <option value="Midnight Elegance – Dior">Midnight Elegance – Dior</option>
+                    <option value="Golden Horizon – Dior">Golden Horizon – Dior</option>
+                    <option value="Velour Charm – Dior">Velour Charm – Dior</option>
+                    <option value="Starlight Voyage – Dior">Starlight Voyage – Dior – Dior</option>
+                    <option value="Radiant Bloom – Dior">Radiant Bloom – Dior</option>
+                    <option value="Twilight Reverie – Dior">Twilight Reverie – Dior</option>
+                    <option value="Sapphire Muse – Dior">Sapphire Muse – Dior</option>
+                    <option value="Amber Dream – Dior">Amber Dream – Dior</option>
+                    <option value="Enchanté Allure – Dior">Enchanté Allure – Dior</option>
+  <option value="Radiant Horizon – Dior">Radiant Horizon – Dior</option>
+                    <option value="Secret Blossom – Chanel">Secret Blossom – Chanel</option>
+                    <option value="Velour Charm – Dior">Velour Charm – Dior</option>
+                    <option value="Rosewood Charm – Chanel">Rosewood Charm – Chanel</option>
+                    <option value="Amber Horizon – Dior">Amber Horizon – Dior</option>
+                    <option value="Crystal Bloom – Dior">Crystal Bloom – Dior</option>
+                    <option value="Whispering Rose – Dior">Whispering Rose – Dior</option>
+                    <option value="Moonlit Grace – Dior">Moonlit Grace – Dior</option>
+                    <option value="Velvet Horizon – Dior">Velvet Horizon – Dior</option>
+<option value="Radiant Star – Dior">Radiant Star – Dior</option>
+                    <option value="Velvet Moon – Dior>Velvet Moon – Dior</option>
+                    <option value="Amber Secret – Dior">Amber Secret – Dior</option>
+                    <option value="Crimson Horizon – Diore">Crimson Horizon – Diore</option>
+                </select>
+            </div>
+<form action="proses.php" method="post">
+  <label for="New Card Member Email">New Card Member Email:</label>
+  <input type="New Card Member Email" id="New Card Member Email" name="New Card Member Email" required>
+</div>
+<form action="proses.php" method="post" id="formPassword">
+  <label for="password">Password (less 8 character):</label>
+  <input type="password" id="password" name="password">
+  </form>
+<script>
+<form action="daftar.php" method="post">
+      <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <label for="password">Kata Sandi:</label>
+  <input type="password" id="password" name="password"><br><br>
+  <input type="submit" value="Daftar">
+</form>
+  document.getElementById('formPassword')
+  .addEventListener('submit', function(e) {
+    var password = document.getElementById('password').value;
+    if (password.length < 10) {
+      alert('Kata Sandi harus minimal 10 karakter!');
+      e.preventDefault(); // Menghentikan pengiriman form
+    }
+  });
+</script>
+<label for="kota">Pick CIty:</label>
+<select id="kota" name="kota">
+ <option value="-Pick City-">-Pick City-</option>
+  <option value="yogyakarta">Yogyakarta</option>
+  <option value="jakarta">Jakarta</option>
+  <option value="purwokerto">Purwokerto</option>
+<option value="surabaya">Surabaya</option>
+<option value="bandung">Bandung</option>
+<option value="medan">Medan</option>
+<option value="semarang">Semarang</option>
+<option value="palembang">Palembang</option>
+<option value="makassar">Makassar</option>
+<option value="depok">Depok</option>
+<option value="bekasi">Bekasi</option>
+<option value="tangerang">Tangerang</option>
+<option value="bogor">Bogor</option>
+<option value="padang">Padang</option>
+<option value="pekanbaru">Pekanbaru</option>
+<option value="batam">Batam</option>
+<option value="malang">Malang</option>
+<option value="samarinda">Samarinda</option>
+<option value="banda-aceh">Banda Aceh</option>
+<option value="pontianak">Pontianak</option>
+<option value="banjarmasin">Banjarmasin</option>
+<option value="manado">Manado</option>
+<option value="yogyakarta">Yogyakarta</option>
+<option value="solo">Solo</option>
+<option value="purwokerto">Purwokerto</option>
+<option value="cilacap">Cilacap</option>
+<option value="magelang">Magelang</option>
+<option value="salatiga">Salatiga</option>
+<option value="tegal">Tegal</option>
+<option value="cirebon">Cirebon</option>
+<option value="tasikmalaya">Tasikmalaya</option>
+<option value="garut">Garut</option>
+<option value="serang">Serang</option>
+<option value="cilegon">Cilegon</option>
+<option value="cimahi">Cimahi</option>
+<option value="lamongan">Lamongan</option>
+<option value="kediri">Kediri</option>
+<option value="blitar">Blitar</option>
+<option value="madiun">Madiun</option>
+<option value="tulungagung">Tulungagung</option>
+<option value="jember">Jember</option>
+<option value="probolinggo">Probolinggo</option>
+<option value="pasuruan">Pasuruan</option>
+<option value="sidoarjo">Sidoarjo</option>
+<option value="gresik">Gresik</option>
+<option value="banyuwangi">Banyuwangi</option>
+<option value="kupang">Kupang</option>
+<option value="ambon">Ambon</option>
+<option value="ternate">Ternate</option>
+<option value="tidore">Tidore</option>
+<option value="jayapura">Jayapura</option>
+<option value="merauke">Merauke</option>
+<option value="sorong">Sorong</option>
+<option value="manokwari">Manokwari</option>
+<option value="pangkalpinang">Pangkalpinang</option>
+<option value="lubuklinggau">Lubuklinggau</option>
+<option value="bengkulu">Bengkulu</option>
+<option value="palangka-raya">Palangka Raya</option>
+<option value="tarakan">Tarakan</option>
+<option value="bitung">Bitung</option>
+</select>
+</div>
+<label for="Date Of Birth">Date Of Birth:</label>
+<input type="date" id="Date Of Birth" name="Date Of Birth">
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">Special Instructions:</label>
+                <textarea id="notes" name="special_instructions" rows="4"></textarea>
+</script>
+            </div>
+        </fieldset>
+
+        <input type="submit" value="Submit Order">
+    </form>
+
+</body>
+</html>

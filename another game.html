@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brick Bouncer — Game HTML</title>
+  <style>
+    body{margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#0f1724;color:#fff;font-family:sans-serif;}
+    canvas{background:#071025;border:2px solid #7dd3fc;border-radius:8px;}
+    #controls{position:absolute;top:20px;left:50%;transform:translateX(-50%);}
+    button{padding:8px 14px;margin:0 4px;border-radius:6px;border:none;cursor:pointer;font-weight:bold;}
+    #startBtn{background:#7dd3fc;color:#041124;}
+    #resetBtn{background:#041124;color:#7dd3fc;border:1px solid #7dd3fc;}
+    #voucherBtn{background:#22c55e;color:#041124;}
+
+    /* Modal */
+    #modal {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;}
+    #modalContent {background:#1e293b;padding:20px;border-radius:10px;text-align:center;}
+    #modalContent h2{margin-bottom:10px;}
+    .rewardBtn{display:block;margin:6px auto;padding:8px 12px;border-radius:6px;border:none;cursor:pointer;background:#7dd3fc;color:#041124;font-weight:bold;}
+    #voucherCode {margin-top:10px;font-weight:bold;color:#facc15;}
+    #closeModal {margin-top:15px;padding:6px 12px;border:none;border-radius:6px;background:#ef4444;color:#fff;cursor:pointer;}
+    #copyBtn,#igBtn{margin-top:8px;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;}
+    #copyBtn{background:#facc15;color:#041124;}
+    #igBtn{background:#ec4899;color:#fff;}
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <button id="startBtn">Mulai</button>
+    <button id="resetBtn">Reset</button>
+    <button id="voucherBtn">Tukar Voucher</button>
+    <span style="margin-left:10px">Skor: <span id="score">0</span> | Nyawa: <span id="lives">5</span> | Gold: <span id="gold">0</span> | Voucher: <span id="voucher">0</span></span>
+  </div>
+  <canvas id="game" width="720" height="480"></canvas>
+
+  <!-- Modal Hadiah -->
+  <div id="modal">
+    <div id="modalContent">
+      <h2>Pilih Hadiah Voucher</h2>
+      <button class="rewardBtn" data-reward="Diskon 50%">Diskon 50%</button>
+      <button class="rewardBtn" data-reward="Diskon 75%">Diskon 75%</button>
+      <button class="rewardBtn" data-reward="Diskon 100%">Diskon 100%</button>
+      <div id="voucherCode"></div>
+      <button id="copyBtn" style="display:none;">Copy Kode</button>
+      <button id="igBtn" style="display:none;">Kirim via IG</button>
+      <button id="closeModal">Tutup</button>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width, H = canvas.height;
+
+    let scoreEl = document.getElementById('score');
+    let livesEl = document.getElementById('lives');
+    let goldEl = document.getElementById('gold');
+    let voucherEl = document.getElementById('voucher');
+    let startBtn = document.getElementById('startBtn');
+    let resetBtn = document.getElementById('resetBtn');
+    let voucherBtn = document.getElementById('voucherBtn');
+
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+    const rewardBtns = document.querySelectorAll('.rewardBtn');
+    const voucherCodeEl = document.getElementById('voucherCode');
+    const copyBtn = document.getElementById('copyBtn');
+    const igBtn = document.getElementById('igBtn');
+
+    let state = {
+      running:false,
+      paddle:{w:110,h:14,x:(W-110)/2,y:H-30,speed:8},
+      ball:{x:W/2,y:H-60,r:9,vx:0,vy:0,stuck:true},
+      bricks:[],rows:4,cols:8,score:0,lives:5,gold:0,voucher:0
+    };
+
+    function buildBricks(){
+      state.bricks = [];
+      let rows = state.rows; let cols = state.cols;
+      let padding = 10, offsetTop = 50, offsetLeft = 35;
+      let brickW = (W-offsetLeft*2-(cols-1)*padding)/cols;
+      let brickH = 18;
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          let x = offsetLeft+c*(brickW+padding);
+          let y = offsetTop+r*(brickH+padding);
+          state.bricks.push({x,y,w:brickW,h:brickH,alive:true});
+        }
+      }
+    }
+
+    function reset(){
+      state.score=0; state.lives=5;
+      state.ball.x=W/2; state.ball.y=H-60; state.ball.vx=0; state.ball.vy=0; state.ball.stuck=true;
+      buildBricks(); updateHUD();
+      draw();
+    }
+
+    function updateHUD(){
+      scoreEl.textContent=state.score; 
+      livesEl.textContent=state.lives; 
+      goldEl.textContent=state.gold;
+      voucherEl.textContent=state.voucher;
+    }
+
+    let keys={};
+    window.addEventListener('keydown',e=>{keys[e.code]=true; if(e.code==='Space'){launchBall();}});
+    window.addEventListener('keyup',e=>{keys[e.code]=false;});
+
+    // Paddle geser dengan mouse/touch
+    let dragging=false;
+    canvas.addEventListener('pointerdown',e=>{dragging=true;movePaddleTo(e.clientX);});
+    canvas.addEventListener('pointermove',e=>{if(dragging) movePaddleTo(e.clientX);});
+    canvas.addEventListener('pointerup',()=>{dragging=false;});
+
+    function movePaddleTo(clientX){
+      const rect = canvas.getBoundingClientRect();
+      const x = clientX - rect.left;
+      state.paddle.x = Math.min(Math.max(x - state.paddle.w/2, 0), W - state.paddle.w);
+      if(state.ball.stuck){ state.ball.x = state.paddle.x + state.paddle.w/2; }
+    }
+
+    function launchBall(){
+      if(state.ball.stuck){
+        state.ball.stuck=false;
+        state.ball.vx=3; state.ball.vy=-5;
+        if(!state.running){state.running=true; requestAnimationFrame(gameLoop);}  
+      }
+    }
+
+    function gameLoop(){
+      update(); draw();
+      if(state.lives>0 && state.bricks.some(b=>b.alive)) requestAnimationFrame(gameLoop);
+      else {state.running=false; draw();}
+    }
+
+    function update(){
+      if(keys['ArrowLeft']) state.paddle.x=Math.max(0,state.paddle.x-state.paddle.speed);
+      if(keys['ArrowRight']) state.paddle.x=Math.min(W-state.paddle.w,state.paddle.x+state.paddle.speed);
+      if(state.ball.stuck){state.ball.x=state.paddle.x+state.paddle.w/2; state.ball.y=state.paddle.y-10;}
+
+      if(!state.ball.stuck){
+        state.ball.x+=state.ball.vx; state.ball.y+=state.ball.vy;
+        if(state.ball.x<0||state.ball.x>W) state.ball.vx*=-1;
+        if(state.ball.y<0) state.ball.vy*=-1;
+        if(state.ball.y>H){
+          state.lives--; updateHUD();
+          state.ball.stuck=true; state.ball.x=W/2; state.ball.y=H-60; state.ball.vx=0; state.ball.vy=0;
+        }
+        if(state.ball.x>state.paddle.x&&state.ball.x<state.paddle.x+state.paddle.w&&state.ball.y+state.ball.r>state.paddle.y){
+          state.ball.vy*=-1;
+          state.ball.y=state.paddle.y-state.ball.r;
+        }
+        for(let b of state.bricks){
+          if(b.alive && state.ball.x>b.x && state.ball.x<b.x+b.w && state.ball.y>b.y && state.ball.y<b.y+b.h){
+            b.alive=false; state.ball.vy*=-1; state.score+=10; updateHUD(); break;
+          }
+        }
+      }
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle='#7dd3fc';
+      ctx.fillRect(state.paddle.x,state.paddle.y,state.paddle.w,state.paddle.h);
+      ctx.beginPath(); ctx.arc(state.ball.x,state.ball.y,state.ball.r,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='#60a5fa';
+      for(let b of state.bricks){ if(b.alive) ctx.fillRect(b.x,b.y,b.w,b.h); }
+      if(state.lives<=0){ctx.fillStyle='#fff';ctx.font='20px sans-serif';ctx.fillText('Game Over',W/2-50,H/2);}
+      if(!state.bricks.some(b=>b.alive)){
+        ctx.fillStyle='#fff';ctx.font='20px sans-serif';ctx.fillText('Kamu Menang! +100 Gold',W/2-100,H/2);
+        if(!state.goldAdded){state.gold+=100; updateHUD(); state.goldAdded=true;}
+      }
+    }
+
+    startBtn.addEventListener('click',()=>{launchBall(); if(!state.running){state.running=true; requestAnimationFrame(gameLoop);}});
+    resetBtn.addEventListener('click',()=>{state.goldAdded=false; reset();});
+    voucherBtn.addEventListener('click',()=>{
+      if(state.gold>=100){
+        state.gold-=100; state.voucher+=1; updateHUD();
+        modal.style.display='flex';
+      } else {
+        alert('Gold tidak cukup (butuh 100)');
+      }
+    });
+
+    rewardBtns.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const reward = btn.dataset.reward;
+        const code = reward.replace(/\s+/g,'').toUpperCase().slice(0,5)+"-"+Math.random().toString(36).substring(2,6).toUpperCase();
+        voucherCodeEl.textContent = "Kode: "+code+" ("+reward+")";
+        copyBtn.style.display='inline-block';
+        igBtn.style.display='inline-block';
+        copyBtn.onclick = ()=>{navigator.clipboard.writeText(code); alert('Kode dicopy!');};
+        igBtn.onclick = ()=>{window.open('https://www.instagram.com/p/DPWNdzjCH63/?igsh=bzQybHowdXh5dTJl','_blank');};
+      });
+    });
+
+    closeModal.addEventListener('click',()=>{modal.style.display='none'; voucherCodeEl.textContent=''; copyBtn.style.display='none'; igBtn.style.display='none';});
+
+    reset();
+  </script>
+</body>
+</html>

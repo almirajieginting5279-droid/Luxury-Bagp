@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scrollable Mini Cards</title>
+  <style>
+    body {
+      background-color: #0e0e0e;
+      color: white;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px;
+    }
+
+    .carousel::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+      background-color: #444;
+      border-radius: 10px;
+    }
+
+    .card {
+      background: #1c1c1c;
+      border: 1px solid #2b2b2b;
+      border-radius: 16px;
+      min-width: 220px;
+      max-width: 220px;
+      flex-shrink: 0;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 8px 0;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #bbb;
+      line-height: 1.4;
+    }
+
+    /* Tombol Panah */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 22px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+
+    .arrow:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .arrow.left {
+      left: -10px;
+    }
+
+    .arrow.right {
+      right: -10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Take Your Bag Now!</h2>
+
+  <div class="carousel-container">
+    <button class="arrow left" onclick="scrollLeft()">❮</button>
+
+    <div class="carousel" id="carousel">
+      <div class="card">
+        <img src="e.jpg" alt="Image 1">
+        <h3>King Loud</h3>
+        <p>Kami mempunyai produk baru yang menciptakan rasa istimewah, dan terdapat makna kerajaan di dalamnya.</p>
+      </div>
+      <div class="card">
+        <img src="d.jpg" alt="Image 2">
+        <h3>Seeblue</h3>
+        <p>Seeblue adalah produk idaman semua wanita, dari bahan hingga bentuk yang kami sediakan adalah pembuatan ilmuan ternama.</p>
+      </div>
+            <div class="card">
+        <img src="c.jpg" alt="Image 4">
+        <h3>Desain Yowow</h3>
+        <p>Sentuhan tradisional berpadu dengan teknologi desain terbaru. Dengan rasa hormat kami berikan hasil terbaik dan terindah bagi pembeli..</p>
+      </div>
+      <div class="card">
+        <img src="b.jpg" alt="Image 5">
+        <h3>Colowe</h3>
+        <p>Inisiatif warna yang dipadu dengan isak tawa wanita lama.</p>
+      </div>
+    </div>
+
+    <button class="arrow right" onclick="scrollRight()">❯</button>
+  </div>
+
+  <script>
+    const carousel = document.getElementById('carousel');
+
+    function scrollLeft() {
+      carousel.scrollBy({ left: -250, behavior: 'smooth' });
+    }
+
+    function scrollRight() {
+      carousel.scrollBy({ left: 250, behavior: 'smooth' });
+    }
+  </script>
+<h2>Jisung and Almira!</h2>
+
+  <div class="carousel-container">
+    <button class="arrow left" onclick="scrollLeft()">❮</button>
+
+    <div class="carousel" id="carousel">
+      <div class="card">
+        <img src="WhatsApp Image 2025-10-05 at 20.54.53_3843dedc.jpg" alt="Image 1">
+        <h3>JA</h3>
+        <p>JIsung n Almira.</p>
+      </div>
+      <div class="card">
+        <img src="WhatsApp Image 2025-10-05 at 20.54.53_2b00a93e.jpg" alt="Image 2">
+        <h3>Jie</h3>
+        <p>Jisung ialah seorang Almira.</p>
+      </div>
+ <div class="card">
+        <img src="WhatsApp Image 2025-10-06 at 21.08.08_e4fcc158.jpg" alt="Image 4">
+        <h3>Desain Yowow</h3>
+        <p>Sentuhan Design.</p>
+      </div>
+            <div class="card">
+        <img src="WhatsApp Image 2025-10-05 at 20.54.54_4f1c9873.jpg" alt="Image 4">
+        <h3>Park</h3>
+        <p>Sebelum bertemu..</p>
+      </div>
+         </div>
+ <button class="arrow right" onclick="scrollRight()">❯</button>
+  </div>
+
+  <script>
+    const carousel = document.getElementById('carousel');
+
+    function scrollLeft() {
+      carousel.scrollBy({ left: -250, behavior: 'smooth' });
+    }
+
+    function scrollRight() {
+      carousel.scrollBy({ left: 250, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="page_title">Halaman Utama</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    form {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    textarea {
+      resize: vertical;
+    }
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    fieldset {
+      border: 1px solid #ccc;
+      padding: 15px 20px 20px 20px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+    }
+    legend {
+      font-weight: bold;
+      padding: 0 10px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    #languageSwitcher {
+      display: block;
+      margin: 0 auto 25px auto;
+      font-size: 1rem;
+      padding: 8px;
+      width: 250px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 data-i18n="main_heading">Silakan di Klik Untuk Kembali Ke Halaman Utama</h1>
+  <p data-i18n="shopping_reminder" style="text-align:center;">
+    Jangan lupa untuk berbelanja. Tinggal klik saja!
+  </p>
+  <p style="text-align:center;">
+    <a href="5_Coding.html" data-i18n="back_home">Kembali ke halaman Utama</a>
+  </p>
+
+  <select id="languageSwitcher" onchange="changeLanguage()">
+    <option value="id">Bahasa Indonesia</option>
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="zh">中文</option>
+    <option value="ja">日本語</option>
+    <option value="ko">한국어</option>
+    <option value="pt">Português</option>
+  </select>
+
+  <h2 data-i18n="order_title">Pick Your Order</h2>
+
+  <form id="orderForm" action="/submit-order" method="post" novalidate>
+    <fieldset>
+      <legend data-i18n="customer_info">Customer Information</legend>
+      <label for="name" data-i18n="label_name">Full Name:</label>
+      <input type="text" id="name" name="customer_name" required />
+
+      <label for="email" data-i18n="label_email">Email:</label>
+      <input type="email" id="email" name="customer_email" required />
+
+      <label for="address" data-i18n="label_address">Shipping Address:</label>
+      <textarea id="address" name="shipping_address" rows="4" required></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend data-i18n="order_details">Order Details</legend>
+
+      <label for="product" data-i18n="label_product">Select Product:</label>
+      <select id="product" name="product_selection" required>
+        <option value="">--Please choose an option--</option>
+        <option value="Midnight Elegance – Dior">Midnight Elegance – Dior</option>
+        <option value="Golden Horizon – Dior">Golden Horizon – Dior</option>
+        <option value="Velour Charm – Dior">Velour Charm – Dior</option>
+        <option value="Starlight Voyage – Dior">Starlight Voyage – Dior</option>
+        <option value="Radiant Bloom – Dior">Radiant Bloom – Dior</option>
+        <option value="Twilight Reverie – Dior">Twilight Reverie – Dior</option>
+        <option value="Sapphire Muse – Dior">Sapphire Muse – Dior</option>
+        <option value="Amber Dream – Dior">Amber Dream – Dior</option>
+        <option value="Enchanté Allure – Dior">Enchanté Allure – Dior</option>
+        <option value="Radiant Horizon – Dior">Radiant Horizon – Dior</option>
+        <option value="Secret Blossom – Chanel">Secret Blossom – Chanel</option>
+        <option value="Rosewood Charm – Chanel">Rosewood Charm – Chanel</option>
+        <option value="Amber Horizon – Dior">Amber Horizon – Dior</option>
+        <option value="Crystal Bloom – Dior">Crystal Bloom – Dior</option>
+        <option value="Whispering Rose – Dior">Whispering Rose – Dior</option>
+        <option value="Moonlit Grace – Dior">Moonlit Grace – Dior</option>
+        <option value="Velvet Horizon – Dior">Velvet Horizon – Dior</option>
+        <option value="Radiant Star – Dior">Radiant Star – Dior</option>
+        <option value="Velvet Moon – Dior">Velvet Moon – Dior</option>
+        <option value="Amber Secret – Dior">Amber Secret – Dior</option>
+        <option value="Crimson Horizon – Dior">Crimson Horizon – Dior</option>
+      </select>
+
+      <label for="newEmail" data-i18n="label_new_email">New Card Member Email:</label>
+      <input type="email" id="newEmail" name="new_card_member_email" required />
+
+      <label for="password" data-i18n="label_password">Password (min 10 characters):</label>
+      <input type="password" id="password" name="password" required minlength="10" />
+
+      <label for="city" data-i18n="label_city">Pick City:</label>
+      <select id="city" name="city" required>
+        <option value="">--Select City--</option>
+        <option value="new_york">New York</option>
+        <option value="los_angeles">Los Angeles</option>
+        <option value="chicago">Chicago</option>
+        <option value="houston">Houston</option>
+        <option value="phoenix">Phoenix</option>
+        <option value="philadelphia">Philadelphia</option>
+        <option value="san_antonio">San Antonio</option>
+        <option value="san_diego">San Diego</option>
+        <option value="dallas">Dallas</option>
+        <option value="san_jose">San Jose</option>
+        <option value="austin">Austin</option>
+        <option value="jacksonville">Jacksonville</option>
+        <option value="fort_worth">Fort Worth</option>
+        <option value="columbus">Columbus</option>
+        <option value="charlotte">Charlotte</option>
+        <option value="san_francisco">San Francisco</option>
+        <option value="indianapolis">Indianapolis</option>
+        <option value="seattle">Seattle</option>
+        <option value="denver">Denver</option>
+        <option value="washington_dc">Washington DC</option>
+      </select>
+
+      <label for="dob" data-i18n="label_dob">Date Of Birth:</label>
+      <input type="date" id="dob" name="date_of_birth" required />
+
+      <label for="quantity" data-i18n="label_quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="1" value="1" required />
+
+      <label for="notes" data-i18n="label_notes">Special Instructions:</label>
+      <textarea id="notes" name="special_instructions" rows="4"></textarea>
+    </fieldset>
+
+    <input type="submit" value="Submit Order" data-i18n="submit_button" />
+  </form>
+
+  <script>
+    const translations = {
+      id: {
+        page_title: "Halaman Utama",
+        main_heading: "Silakan di Klik Untuk Kembali Ke Halaman Utama",
+        shopping_reminder: "Jangan lupa untuk berbelanja. Tinggal klik saja!",
+        back_home: "Kembali ke halaman Utama",
+        order_title: "Pick Your Order",
+        customer_info: "Informasi Pelanggan",
+        label_name: "Nama Lengkap:",
+        label_email: "Email:",
+        label_address: "Alamat Pengiriman:",
+        order_details: "Rincian Pesanan",
+        label_product: "Pilih Produk:",
+        label_new_email: "Email Anggota Baru:",
+        label_password: "Password (minimal 10 karakter):",
+        label_city: "Pilih Kota:",
+        label_dob: "Tanggal Lahir:",
+        label_quantity: "Jumlah:",
+        label_notes: "Instruksi Khusus:",
+        submit_button: "Kirim Pesanan"
+      },
+      en: {
+        page_title: "Home Page",
+        main_heading: "Please Click To Return To Home Page",
+        shopping_reminder: "Don't forget to shop. Just click!",
+        back_home: "Back to Home Page",
+        order_title: "Pick Your Order",
+        customer_info: "Customer Information",
+        label_name: "Full Name:",
+        label_email: "Email:",
+        label_address: "Shipping Address:",
+        order_details: "Order Details",
+        label_product: "Select Product:",
+        label_new_email: "New Card Member Email:",
+        label_password: "Password (min 10 characters):",
+        label_city: "Pick City:",
+        label_dob: "Date Of Birth:",
+        label_quantity: "Quantity:",
+        label_notes: "Special Instructions:",
+        submit_button: "Submit Order"
+      },
+      es: {
+        page_title: "Página Principal",
+        main_heading: "Por favor haga clic para regresar a la página principal",
+        shopping_reminder: "No olvide comprar. ¡Solo haga clic!",
+        back_home: "Volver a la página principal",
+        order_title: "Elija su pedido",
+        customer_info: "Información del cliente",
+        label_name: "Nombre completo:",
+        label_email: "Correo electrónico:",
+        label_address: "Dirección de envío:",
+        order_details: "Detalles del pedido",
+        label_product: "Seleccionar producto:",
+        label_new_email: "Correo electrónico del nuevo miembro:",
+        label_password: "Contraseña (mínimo 10 caracteres):",
+        label_city: "Elija la ciudad:",
+        label_dob: "Fecha de nacimiento:",
+        label_quantity: "Cantidad:",
+        label_notes: "Instrucciones especiales:",
+        submit_button: "Enviar pedido"
+      },
+      fr: {
+        page_title: "Page d'accueil",
+        main_heading: "Cliquez pour revenir à la page d'accueil",
+        shopping_reminder: "N'oubliez pas de faire du shopping. Il suffit de cliquer!",
+        back_home: "Retour à la page d'accueil",
+        order_title: "Choisissez votre commande",
+        customer_info: "Informations client",
+        label_name: "Nom complet:",
+        label_email: "Email:",
+        label_address: "Adresse de livraison:",
+        order_details: "Détails de la commande",
+        label_product: "Sélectionnez un produit:",
+        label_new_email: "Email du nouveau membre:",
+        label_password: "Mot de passe (minimum 10 caractères):",
+        label_city: "Choisissez la ville:",
+        label_dob: "Date de naissance:",
+        label_quantity: "Quantité:",
+        label_notes: "Instructions spéciales:",
+        submit_button: "Envoyer la commande"
+      },
+      de: {
+        page_title: "Startseite",
+        main_heading: "Bitte klicken Sie, um zur Startseite zurückzukehren",
+        shopping_reminder: "Vergessen Sie nicht einzukaufen. Einfach klicken!",
+        back_home: "Zurück zur Startseite",
+        order_title: "Wählen Sie Ihre Bestellung",
+        customer_info: "Kundeninformationen",
+        label_name: "Vollständiger Name:",
+        label_email: "E-Mail:",
+        label_address: "Lieferadresse:",
+        order_details: "Bestelldetails",
+        label_product: "Produkt auswählen:",
+        label_new_email: "Neue Mitglieds-E-Mail:",
+        label_password: "Passwort (mindestens 10 Zeichen):",
+        label_city: "Stadt wählen:",
+        label_dob: "Geburtsdatum:",
+        label_quantity: "Menge:",
+        label_notes: "Besondere Anweisungen:",
+        submit_button: "Bestellung absenden"
+      },
+      zh: {
+        page_title: "主页",
+        main_heading: "请点击返回主页",
+        shopping_reminder: "别忘了购物，只需点击！",
+        back_home: "返回主页",
+        order_title: "选择您的订单",
+        customer_info: "客户信息",
+        label_name: "全名：",
+        label_email: "电子邮件：",
+        label_address: "送货地址：",
+        order_details: "订单详情",
+        label_product: "选择产品：",
+        label_new_email: "新会员电子邮件：",
+        label_password: "密码（至少10个字符）：",
+        label_city: "选择城市：",
+        label_dob: "出生日期：",
+        label_quantity: "数量：",
+        label_notes: "特别说明：",
+        submit_button: "提交订单"
+      },
+      ja: {
+        page_title: "ホームページ",
+        main_heading: "ホームページに戻るにはクリックしてください",
+        shopping_reminder: "お買い物を忘れずに。クリックするだけ！",
+        back_home: "ホームページに戻る",
+        order_title: "注文を選択してください",
+        customer_info: "お客様情報",
+        label_name: "氏名：",
+        label_email: "メールアドレス：",
+        label_address: "配送先住所：",
+        order_details: "注文の詳細",
+        label_product: "商品を選択：",
+        label_new_email: "新規カード会員メール：",
+        label_password: "パスワード（10文字以上）：",
+        label_city: "都市を選択：",
+        label_dob: "生年月日：",
+        label_quantity: "数量：",
+        label_notes: "特別な指示：",
+        submit_button: "注文を送信"
+      },
+      ko: {
+        page_title: "홈페이지",
+        main_heading: "홈페이지로 돌아가려면 클릭하세요",
+        shopping_reminder: "쇼핑하는 것을 잊지 마세요. 클릭만 하면 됩니다!",
+        back_home: "홈페이지로 돌아가기",
+        order_title: "주문 선택",
+        customer_info: "고객 정보",
+        label_name: "전체 이름:",
+        label_email: "이메일:",
+        label_address: "배송 주소:",
+        order_details: "주문 세부 사항",
+        label_product: "제품 선택:",
+        label_new_email: "신규 카드 회원 이메일:",
+        label_password: "비밀번호 (최소 10자):",
+        label_city: "도시 선택:",
+        label_dob: "생년월일:",
+        label_quantity: "수량:",
+        label_notes: "특별 지시 사항:",
+        submit_button: "주문 제출"
+      },
+      pt: {
+        page_title: "Página Principal",
+        main_heading: "Clique para voltar à página principal",
+        shopping_reminder: "Não se esqueça de fazer compras. Basta clicar!",
+        back_home: "Voltar para a página principal",
+        order_title: "Escolha seu pedido",
+        customer_info: "Informações do cliente",
+        label_name: "Nome completo:",
+        label_email: "Email:",
+        label_address: "Endereço de entrega:",
+        order_details: "Detalhes do pedido",
+        label_product: "Selecione o produto:",
+        label_new_email: "Email do novo membro do cartão:",
+        label_password: "Senha (mínimo 10 caracteres):",
+        label_city: "Escolha a cidade:",
+        label_dob: "Data de nascimento:",
+        label_quantity: "Quantidade:",
+        label_notes: "Instruções especiais:",
+        submit_button: "Enviar pedido"
+      }
+    };
+
+    function changeLanguage() {
+      const lang = document.getElementById("languageSwitcher").value;
+      const elements = document.querySelectorAll("[data-i18n]");
+      const dict = translations[lang] || translations["id"];
+
+      document.documentElement.lang = lang;
+      document.title = dict.page_title || document.title;
+
+      elements.forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.textContent = dict[key];
+      });
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+      const pwd = document.getElementById("password").value;
+      if (pwd.length < 10) {
+        alert("Password must be at least 10 characters!");
+        e.preventDefault();
+      }
+    });
+
+    // Initialize default language
+    changeLanguage();
+  </script>
+</body>
+</html>
